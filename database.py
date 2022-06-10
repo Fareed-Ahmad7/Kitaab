@@ -20,7 +20,7 @@ createTable()
 
 def createNote(note: Note):
     with conn:
-        c.execute("INSERT INTO notes(title, content) VALUES( :title, :content)",{ 'title': note.title, 'content': note.content})
+        c.execute("INSERT INTO notes(title, content) VALUES( :title, :content)",{ 'title': note.name, 'content': note.content})
         conn.commit()
     
 def showNote():
@@ -31,6 +31,22 @@ def showNote():
 showNote()
 
 
+def updateNote(noteName: str, newName: str):
+    with conn:
+        c.execute('''UPDATE notes SET title = ? WHERE title LIKE ? ''', (newName,noteName,))
+        conn.commit()
+        
+def updateContent(noteName: str, newContent: str):
+    with conn:
+        c.execute('''UPDATE notes SET content = ? WHERE title LIKE ? ''', (newContent,noteName,))
+        conn.commit()
+        
+def deleteNote(noteName: str):
+    with conn:
+        c.execute('''DELETE FROM notes WHERE title LIKE ? ''', (noteName,))
+        conn.commit()
+    
+    
 def get_all_notes() -> List[Note]:
     c.execute("SELECT * from notes")
     results = c.fetchall()
@@ -38,8 +54,4 @@ def get_all_notes() -> List[Note]:
     for result in results:
         notes.append(Note(*result))
     return notes
-
-
-def deleteNote(delete_rowid: int):
-    c.execute('''DELETE FROM notes WHERE rowid = ? ''', (delete_rowid,))
-    conn.commit()
+  
