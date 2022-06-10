@@ -43,14 +43,3 @@ def get_all_notes() -> List[Note]:
 def deleteNote(delete_rowid: int):
     c.execute('''DELETE FROM notes WHERE rowid = ? ''', (delete_rowid,))
     conn.commit()
-
-# def updateNote():
-#     # c.execute(''' UPDATE notes SET rowid=rowid-3 ''')
-#     # c.execute('''DELETE from notes''')
-#         # c.execute('''DELETE from SQLITE_SEQUENCE WHERE NAME = 'notes' ''')
-#         print("ds")
-#         c.execute('''UPDATE SQLITE_SEQUENCE SET SEQ = 1 WHERE NAME = "notes" ''')
-#         conn.commit()
-
-
-    
