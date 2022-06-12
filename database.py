@@ -29,8 +29,6 @@ def showNote():
         rows = c.fetchall()  
         for row in rows:
             print(row)        
-showNote()
-
 
 def updateNote(noteName: str, newName: str):
     with conn:
