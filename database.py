@@ -13,14 +13,15 @@ def createTable():
     c.execute(""" CREATE TABLE IF NOT EXISTS notes(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title text,
-            content text
+            content text,
+            dateAdded text
         )""")
 
 createTable()
 
 def createNote(note: Note):
     with conn:
-        c.execute("INSERT INTO notes(title, content) VALUES( :title, :content)",{ 'title': note.name, 'content': note.content})
+        c.execute("INSERT INTO notes(title, content, dateAdded) VALUES( :title, :content, :dateAdded)",{ 'title': note.name, 'content': note.content, 'dateAdded': note.date_Added})
         conn.commit()
     
 def showNote():

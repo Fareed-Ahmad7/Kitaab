@@ -1,3 +1,4 @@
+from rich.panel import Panel
 import os
 import sys
 from rich import box
@@ -6,16 +7,15 @@ from rich.table import Table
 from datetime import datetime
 from rich.console import Console
 from rich.traceback import install
-from database import createNote, deleteNote, get_all_notes, updateContent, updateNote
+from database import createNote, deleteNote, get_all_notes, showNote, updateContent, updateNote
 
-install()
+install()  # overwrites traceback with rich's traceback 
 
 console = Console()
 date = datetime.today().strftime('%d/%m/%Y')
 
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
-
 
 def menu():
     console.print(" 1 --> New note", style="orchid2")
@@ -36,7 +36,7 @@ def App():
     # query all notes from database
     Notes = get_all_notes()
     for idx, task in enumerate(Notes, start=1):
-        table.add_row(str(idx), task.name, task.content[:30], date)
+        table.add_row(str(idx), task.name, task.content[:30], task.date_Added)
     console.print(table)
     
     print("\n")
@@ -48,7 +48,8 @@ def App():
         idx = 0
         NoteName = input(" Name: ")
         NoteContent = input(" Content: ")
-        note = Note(idx, NoteName, NoteContent)
+        Date = date
+        note = Note(idx, NoteName, NoteContent, Date)
         createNote(note)
         clear()
         App()
