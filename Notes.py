@@ -5,10 +5,7 @@ from model import Note
 from rich.table import Table
 from datetime import datetime
 from rich.console import Console
-from rich.traceback import install
 from database import createNote, deleteNote, get_all_notes, updateContent, updateNote
-
-install()  # overwrites traceback with rich's traceback 
 
 console = Console()
 date = datetime.today().strftime('%d/%m/%Y')
