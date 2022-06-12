@@ -1,4 +1,3 @@
-from rich.panel import Panel
 import os
 import sys
 from rich import box
@@ -7,7 +6,7 @@ from rich.table import Table
 from datetime import datetime
 from rich.console import Console
 from rich.traceback import install
-from database import createNote, deleteNote, get_all_notes, showNote, updateContent, updateNote
+from database import createNote, deleteNote, get_all_notes, updateContent, updateNote
 
 install()  # overwrites traceback with rich's traceback 
 
