@@ -1,1 +1,13 @@
 *.db
+__pycache__/
+build/
+develop-eggs/
+dist/
+.eggs/
+lib/
+wheels/
+*.egg-info/
+*.egg
+MANIFEST
+.DS_Store
+.idea/

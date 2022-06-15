@@ -1,12 +1,13 @@
 import sqlite3
-from typing import List
 from model import Note
+from typing import List
 
 # connect to database
 conn = sqlite3.connect('notes.db')
 
 # create a cursor
 c = conn.cursor()
+
 # create a table
 def createTable():
     c.execute(""" CREATE TABLE IF NOT EXISTS notes(
@@ -18,16 +19,19 @@ def createTable():
 
 createTable()
 
+
 def createNote(note: Note):
     with conn:
         c.execute("INSERT INTO notes(title, content, dateAdded) VALUES( :title, :content, :dateAdded)", {'title': note.name, 'content': note.content, 'dateAdded': note.date_Added})
         conn.commit()
+
 
 def showNote():
         c.execute("SELECT  * from notes")
         rows = c.fetchall()  
         for row in rows:
             print(row)        
+
 
 def updateNote(noteName: str, newName: str , newDate: str):
     with conn:
@@ -47,6 +51,7 @@ def updateContent(noteName: str, newContent: str, newDate: str):
             '''UPDATE notes SET dateAdded = ? WHERE title LIKE ? ''', (newDate, noteName,))
         conn.commit()
   
+  
 def deleteNote(noteName: str):
     with conn:
         c.execute('''DELETE FROM notes WHERE title LIKE ? ''', (noteName,))
@@ -60,4 +65,15 @@ def get_all_notes() -> List[Note]:
     for result in results:
         notes.append(Note(*result))
     return notes
-  
+
+
+def get_dict():
+    with conn:
+        conn.row_factory = sqlite3.Row
+        curs = conn.cursor()
+        curs.execute("SELECT * FROM notes")
+        rows = curs.fetchall()
+        Dict =[]
+        for row in rows:
+            Dict.append(dict(row))
+        return Dict  
