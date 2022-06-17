@@ -42,4 +42,6 @@ You can easily generate one for yourself by following the steps below:
 ```
 add-token
 ```
-<img width="539" alt="Screenshot 2022-06-18 at 1 22 42 AM" src="https://user-images.githubusercontent.com/90202062/174393776-39baf5c9-5874-4914-9d6a-3e70903b5fa8.png">
+<img width="508" alt="Screenshot 2022-06-18 at 2 13 21 AM" src="https://user-images.githubusercontent.com/90202062/174398731-5e9214a2-a823-4ef5-b500-1e4d32025cfb.png">
+
+
