@@ -35,7 +35,7 @@ You can easily generate one for yourself by following the steps below:
 5. Click on `Generate new Token`
 6. Give it a name , set expiration date and click on repo  
 <img width="807" alt="Screenshot 2022-06-18 at 1 46 30 AM" src="https://user-images.githubusercontent.com/90202062/174395618-e81209a6-7749-4c9d-8bed-a6b12792b6e8.png">
-7. Navigate down and click on green button `Generate token`. 
+7. Navigate down and click on green button `Generate token`.<br/> 
 8. Make sure to copy your personal access token now, you won't be able to see it again. 
 
 ## How to add token
