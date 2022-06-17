@@ -24,5 +24,6 @@ setuptools.setup(
     package_dir={'': 'src'},
     install_requires=[
         'rich ==12.4.4',
+        'PyGithub ==1.55',
         ]                     # Install other dependencies if any
 )
