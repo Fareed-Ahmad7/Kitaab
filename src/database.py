@@ -19,7 +19,39 @@ def createTable():
 
 createTable()
 
+def tokenTable():
+    c.execute(""" CREATE TABLE IF NOT EXISTS Token(
+            token text
+        )""")
 
+tokenTable()
+
+def dropToken():
+    with conn:
+        c.execute(""" DROP TABLE IF EXISTS Token """)
+        conn.commit()
+    
+
+def addToken(mytoken: str):
+    dropToken()
+    tokenTable()
+    with conn:
+        c.execute("INSERT INTO Token(token) VALUES(:token)", {'token': mytoken})
+        conn.commit()
+        
+def showToken():
+    tokenTable()
+    with conn:
+        c.execute("SELECT token from Token")
+        tokens = None
+        tokens = c.fetchone()
+        if tokens!= None:
+            for token in tokens:
+                return token
+        else:
+            return tokens               
+                
+        
 def createNote(note: Note):
     with conn:
         c.execute("INSERT INTO notes(title, content, dateAdded) VALUES( :title, :content, :dateAdded)", {'title': note.name, 'content': note.content, 'dateAdded': note.date_Added})
