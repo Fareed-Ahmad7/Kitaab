@@ -32,7 +32,7 @@ def error():
 
 def menu():
     console.print(" 1 --> New note", style="orchid2")
-    console.print(" 2 --> Edit note", style="pale_violet_red1")
+    console.print(" 2 --> Edit name", style="pale_violet_red1")
     console.print(" 3 --> Edit content", style="light_coral")
     console.print(" 4 --> Delete note", style="red3")
 
@@ -45,14 +45,14 @@ def Help():
 # getting content for board view
 def get_content(user):
     content = user["content"]
-    title = user["title"]
-    return f"[b]{content}[/b]\n[yellow]{title}"
+    name = user["title"]
+    return f"[medium_spring_green]{content}\n[orchid1]{name}"
 
 # build board with Rich
 def viewBoard():
     console = Console()
     users = get_dict()
-    user_renderables = [Panel(get_content(user), expand=True)for user in users]
+    user_renderables = [Panel(get_content(user), expand=True,  border_style="indian_red1")for user in users]
     console.print(Columns(user_renderables))
 
 
