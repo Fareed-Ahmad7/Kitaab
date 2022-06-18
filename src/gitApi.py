@@ -1,8 +1,7 @@
 import os
 from github import Github
-from database import showToken
+from database import getNote, showToken, get_all_notes
 from rich.console import Console
-from database import get_all_notes
 
 console = Console()
 
@@ -52,6 +51,7 @@ def createGithubNote(noteName: str, noteContent: str):
 # create repo
 def createGithubRepo():
     if key != None and repoExist == 'false':
+        print("please wait...")
         repo = user.create_repo("My-Kitaab")
         repo.create_file("readme.md", "add readme","## This repository is auto created by a note-taking app named kitaab.<br/>learn more https://github.com/Fareed-Ahmad7/Kitaab")
         notes = get_all_notes()
@@ -63,7 +63,12 @@ createGithubRepo()
 
 # edit note name
 def editGithubNoteName(noteName: str, newName: str):
-    pass
+    if key != None:
+        repo = user.get_repo("My-Kitaab")
+        file = repo.get_contents(noteName)
+        repo.delete_file(file.path, "deleted note", file.sha)
+        noteContent = getNote(newName)
+        createGithubNote(newName, noteContent)
 
 
 # edit note content
@@ -78,5 +83,5 @@ def editGithubNoteContent(noteName, newContent):
 def deleteGithubNote(noteName: str):
     if key != None:
         repo = user.get_repo("My-Kitaab")
-        noteName = repo.get_contents(noteName)
-        repo.delete_file(noteName.path, "deleted note", noteName.sha)
+        file = repo.get_contents(noteName)
+        repo.delete_file(file.path, "deleted note", file.sha)
