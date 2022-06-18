@@ -25,5 +25,6 @@ setuptools.setup(
     install_requires=[
         'rich ==12.4.4',
         'PyGithub ==1.55',
+        'pytest==7.1.2'
         ]                     # Install other dependencies if any
 )

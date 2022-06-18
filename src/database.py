@@ -58,11 +58,13 @@ def createNote(note: Note):
         conn.commit()
 
 
-def showNote():
-        c.execute("SELECT  * from notes")
-        rows = c.fetchall()  
+# to access specific note content
+def getNote(new_name: str):
+    with conn:
+        c.execute('''SELECT content from notes WHERE title LIKE ?''',(new_name,))
+        rows = c.fetchone()
         for row in rows:
-            print(row)        
+            return row
 
 
 def updateNote(noteName: str, newName: str , newDate: str):
