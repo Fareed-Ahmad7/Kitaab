@@ -53,7 +53,7 @@ def createGithubNote(noteName: str, noteContent: str):
 def createGithubRepo():
     if key != None and repoExist == 'false':
         repo = user.create_repo("My-Kitaab")
-        repo.create_file("readme.md", "add readme","This repository is auto created by a note-taking app named kitaab... learn more [https://github.com/Fareed-Ahmad7/Kitaab]")
+        repo.create_file("readme.md", "add readme","## This repository is auto created by a note-taking app named kitaab.<br/>learn more https://github.com/Fareed-Ahmad7/Kitaab")
         notes = get_all_notes()
         for note in notes:
             createGithubNote(note.name, note.content)

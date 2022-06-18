@@ -79,7 +79,7 @@ def loop():
         # Add Token
         elif response == 'add-token':
             console.print("Adding token requires restart!", style="yellow3")
-            token = input("Enter Github Api Token: ")
+            token = input("Enter github personal access token: ")
             addToken(token)
             tokenValid = checkTokenValidity()
             if tokenValid == "false":
