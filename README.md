@@ -27,7 +27,7 @@ board
 ```
 <img width="1347" alt="Screenshot 2022-06-18 at 1 22 01 AM" src="https://user-images.githubusercontent.com/90202062/174393613-96fdd76b-dd8d-4bd7-9e72-a4dff71abf3f.png">
 
-## Generate token to publish notes in Github repository [OPTIONAL]
+## Generate token to publish notes to Github repository [OPTIONAL]
 You can skip this if you don't want to publish your notes to github repository. Your notes will be safe in local sqlite3 database<br/>
 Uploading notes to github requires Authentication. Thankfully, Github users can generate Tokens to access GithubApi.
 
