@@ -14,7 +14,7 @@ user = g.get_user()
 
 # checking if token entered by user is valid or not
 def checkTokenValidity():
-    token_valid = "false" 
+    token_valid = False
     key = showToken()
     token = os.getenv('GITHUB_TOKEN', key)
     g = Github(token)
@@ -22,7 +22,7 @@ def checkTokenValidity():
     try:
         if key!=None:
             console.print(f"your github account is [yellow3]{user.login}[/]", style="red")
-            token_valid = "true"
+            token_valid = True
             return token_valid
     except:
         return token_valid
@@ -30,10 +30,10 @@ def checkTokenValidity():
 
 # checking if kitaab repository exists 
 def checkRepoExist():
-    exist = "false"
+    exist = False
     try:
         repo = user.get_repo("My-Kitaab")
-        exist = "true"
+        exist = True
         return exist
     except:
         return exist
@@ -50,7 +50,7 @@ def createGithubNote(noteName: str, noteContent: str):
 
 # create repo
 def createGithubRepo():
-    if key != None and repoExist == 'false':
+    if key != None and repoExist == False:
         print("please wait...")
         repo = user.create_repo("My-Kitaab")
         repo.create_file("readme.md", "add readme","## This repository is auto created by a note-taking app named kitaab.<br/>learn more https://github.com/Fareed-Ahmad7/Kitaab")

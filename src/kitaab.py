@@ -36,7 +36,7 @@ def loop():
             token = input("Enter github personal access token: ")
             addToken(token)
             tokenValid = checkTokenValidity()
-            if tokenValid == "false":
+            if tokenValid == False:
                 dropToken()
                 console.print("[red]Invalid token[/] -- please check your token or add a new one", style="light_coral")
 
