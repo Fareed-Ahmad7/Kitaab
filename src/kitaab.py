@@ -1,11 +1,11 @@
 import os
 import sys
-from model import Note
 from datetime import datetime
 from rich.console import Console
-from database import createNote, deleteNote, updateContent, updateNote, addToken, dropToken
-from gitApi import createGithubNote, editGithubNoteName, editGithubNoteContent, deleteGithubNote, checkTokenValidity
-from terminal import clear, error, menu, Help, printBoard, printTable
+from database import create_note, delete_note, update_note_content, update_note_name, add_token, drop_token
+from pygithub import create_github_note, edit_github_note_name, edit_github_note_content, delete_github_note, check_token_validity
+from terminal import clear, error, menu, Help, print_board, print_table
+from model import Note
 
 console = Console()
 
@@ -21,24 +21,25 @@ def loop():
             loop()
 
         # Quit
-        elif response == 'quit' or response == 'q':
+        elif response in ('quit', 'q'):
             console.print("exited successfully!", style="orchid1")
             os._exit(0)
 
         # Board
         elif response == 'board':
-            printBoard()
+            print_board()
             loop()
 
         # Add Token
         elif response == 'add-token':
             console.print("Adding token requires restart!", style="yellow3")
             token = input("Enter github personal access token: ")
-            addToken(token)
-            tokenValid = checkTokenValidity()
-            if tokenValid == False:
-                dropToken()
-                console.print("[red]Invalid token[/] -- please check your token or add a new one", style="light_coral")
+            add_token(token)
+            token_valid = check_token_validity()
+            if token_valid is False:
+                drop_token()
+                console.print(
+                    "[red]Invalid token[/] -- please check your token or add a new one", style="light_coral")
 
         # Create Note
         elif int(response) == 1:
@@ -47,8 +48,8 @@ def loop():
             note_content = input("Content: ")
             date = datetime.today().strftime('%d/%b/%H:%M')
             note = Note(idx, note_name, note_content, date)
-            createNote(note)
-            createGithubNote(note_name, note_content)
+            create_note(note)
+            create_github_note(note_name, note_content)
             clear()
             app()
 
@@ -57,8 +58,8 @@ def loop():
             note_name = str(input("Note name: "))
             new_name = str(input("New name: "))
             date = datetime.today().strftime('%d/%b/%H:%M')
-            updateNote(note_name, new_name, date)
-            editGithubNoteName(note_name, new_name)
+            update_note_name(note_name, new_name, date)
+            edit_github_note_name(note_name, new_name)
             clear()
             app()
 
@@ -67,16 +68,16 @@ def loop():
             note_name = str(input("Note name: "))
             new_content = str(input("New content: "))
             date = datetime.today().strftime('%d/%b/%H:%M')
-            updateContent(note_name, new_content, date)
-            editGithubNoteContent(note_name, new_content)
+            update_note_content(note_name, new_content, date)
+            edit_github_note_content(note_name, new_content)
             clear()
             app()
 
         # Delete Note
         elif int(response) == 4:
             note_name = str(input("Note name: "))
-            deleteNote(note_name)
-            deleteGithubNote(note_name)
+            delete_note(note_name)
+            delete_github_note(note_name)
             clear()
             app()
 
@@ -85,13 +86,14 @@ def loop():
             loop()
     except:
         console.print("oops! invalid text input 😓", style="orchid2")
-        console.print("use [orchid2]help[/] to list all existing input", style="indian_red1")
+        console.print(
+            "use [orchid2]help[/] to list all existing input", style="indian_red1")
         loop()
 
 
 def app():
     clear()
-    printTable()
+    print_table()
     menu()
     loop()
 

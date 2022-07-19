@@ -1,10 +1,14 @@
+'''
+    This module has functions that print content on terminal.
+'''
+
 import os
-from database import get_dict, get_all_notes
 from rich.console import Console
 from rich.columns import Columns
 from rich import box, print
 from rich.panel import Panel
 from rich.table import Table
+from database import get_dict, get_all_notes
 
 console = Console()
 
@@ -30,19 +34,26 @@ def menu():
 
 
 def Help():
-    console.print(" type add-token --> setup github integration ", style="red3")
+    console.print(
+        " type add-token --> setup github integration ", style="red3")
     console.print(" type board --> view notes as board ", style="light_coral")
     console.print(" type quit or q -->  to exit ", style="pale_violet_red1")
 
 
-def printTable():
-    # Creating table using Rich
-    table = Table(title="Al-kitaab", title_style="indian_red1", style="indian_red1", box=box.ROUNDED)
+def print_table():
+    '''
+        Creating table using Rich.
+    '''
+
+    table = Table(title="Al-kitaab", title_style="indian_red1",
+                  style="indian_red1", box=box.ROUNDED)
 
     table.add_column("🌵", style="orange3")
     table.add_column("Name", style="orchid1", header_style="orange3")
-    table.add_column("Content", style="medium_spring_green", header_style="orange3")
-    table.add_column("Last Modified", style="yellow1", justify="center", header_style="orange3")
+    table.add_column("Content", style="medium_spring_green",
+                     header_style="orange3")
+    table.add_column("Last Modified", style="yellow1",
+                     justify="center", header_style="orange3")
 
     # get all notes from database
     notes = get_all_notes()
@@ -52,20 +63,26 @@ def printTable():
 
 
 # BOARD VIEW
-# getting content for board view
 def get_content(user):
+    '''
+        getting content for board view.
+    '''
+
     content = user["content"]
     name = user["title"]
     return f"[medium_spring_green]{content}\n[orchid1]{name}"
 
 
-# build board with Rich
-def printBoard():
+def print_board():
+    '''
+        building board view with Rich.
+    '''
+
     console = Console()
     users = get_dict()
     if users == []:
         console.print("notebook is empty", style='yellow3')
-    else:        
-        user_renderables = [Panel(get_content(user), expand=True,  border_style="indian_red1")for user in users]
+    else:
+        user_renderables = [Panel(get_content(
+            user), expand=True,  border_style="indian_red1")for user in users]
         console.print(Columns(user_renderables))
-
