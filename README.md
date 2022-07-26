@@ -1,12 +1,18 @@
 ![Python](https://img.shields.io/badge/python-v3.6-blue)
 ![License](https://img.shields.io/badge/license-MIT-blue)
-![Pypi version](https://img.shields.io/badge/pypi-0.0.3-ff69b4)
+![Pypi version](https://img.shields.io/badge/pypi-0.0.4-ff69b4)
 
 # Kitaab
 
 ### Create beautiful notes right from the terminal
 
 <img width="908" alt="Screenshot 2022-06-18 at 1 11 32 AM" src="https://user-images.githubusercontent.com/90202062/174393139-8d843851-03ad-4596-a1b6-709364f4bec7.png">
+
+### Publish your notes to Github
+
+
+https://user-images.githubusercontent.com/90202062/181063195-b5cf53d5-f8cf-497e-8722-b3a7e586b594.mov
+
 
 ## Install
 ```
