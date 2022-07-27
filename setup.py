@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="kitaab",                     # This is the name of the package
-    version="0.0.2",                        # The initial release version
+    version="0.0.4",                        # The initial release version
     author="Shaik Fareed Ahammad",                     # Full name of the author
     description="kitaab is a cli note-taking app",
     # Long description read from the the readme file

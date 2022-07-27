@@ -1,6 +1,7 @@
 ![Python](https://img.shields.io/badge/python-v3.6-blue)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Pypi version](https://img.shields.io/badge/pypi-0.0.4-ff69b4)
+![linting](https://img.shields.io/badge/linting-pylint-blueviolet)
 
 # Kitaab
 
